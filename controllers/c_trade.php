@@ -20,8 +20,10 @@ class trade_controller extends base_controller {
 		
 	# JavaScript files
 	$client_files_body = Array(
+		'/css/bootstrap.css',
 		'/js/jquery-1.10.2.min.js',
-		'/js/jquery.form.js', 
+		'/js/jquery.form.js',
+		 'js/bootstrap.js',
 		'/js/trade_index.js');
 	$this->template->client_files_body = Utils::load_client_files($client_files_body);
 	# Render template
@@ -64,7 +66,7 @@ class trade_controller extends base_controller {
 		}
 		else{
 			if ($stock_count > $remaining_count ){
-			echo "You can't sell more number of stocks than you have in your portfolio". $remaining_count;
+			echo "You can't sell more number of stocks than you have in your portfolio for this company.";
 			}
 			else{
 			echo 'success';
@@ -133,7 +135,7 @@ class trade_controller extends base_controller {
 		}
 		else{
 			
-			//$last_price=53.27;
+			$last_price=53.27;
 			$amount_invested=$amount_invested - $total_order;
 			$countSold=$countSold+$stock_count;
 			$realized_gain=$realized_gain+( $stock_count *( $last_price - $cost_basis ) );

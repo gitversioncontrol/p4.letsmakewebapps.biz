@@ -20,7 +20,14 @@ class index_controller extends base_controller {
 			
 		# Now set the <title> tag
 			$this->template->title = "Market Trader";
-			 Router::redirect("/accounts");
+			
+			# JavaScript/CSS files
+		$client_files_body = Array(
+			'/css/bootstrap.css',
+			'/js/jquery-1.10.2.min.js',
+			'js/bootstrap.js');
+		$this->template->client_files_body = Utils::load_client_files($client_files_body);
+			 
 	
 		# CSS/JS includes
 			/*
@@ -32,6 +39,9 @@ class index_controller extends base_controller {
 	    	*/
 	    # To have Login form on front page		 
 		$this->template->content->login_module= View::instance('v_users_login'); 
+		
+		# To have Login form on front page		 
+		$this->template->content->signup_module= View::instance('v_users_signup'); 
 		 
 		# Render the view
 			echo $this->template;

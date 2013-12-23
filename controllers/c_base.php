@@ -22,9 +22,9 @@ class base_controller {
 			$this->template 	  = View::instance('_v_template');
 			$this->email_template = View::instance('_v_email');		
 
-		# JavaScript files
-      //  $client_files_body = Array('/js/jquery-1.10.2.min.js');
-       // $this->template->client_files_body = Utils::load_client_files($client_files_body);			
+		#Styles Load
+		# Load Styles
+			$this->template->client_files_head='<link rel="stylesheet" href="/css/project4.css" type="text/css">';;
 								
 		# So we can use $user in views			
 			$this->template->set_global('user', $this->user);

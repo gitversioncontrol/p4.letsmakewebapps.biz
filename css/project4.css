@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+
+p{
+vertical-align: left;
+
+}
+
+input{
+height: 21px;
+line-height: 21px;
+color:green;
+
+}
+
+form {
+max-width: 1000px;
+margin: 0;
+padding: 0 5px;
+vertical-align: middle;
+float: left;
+}
+
+
+span{
+color:red;
+font-size: 10pt;
+}
+
+
+
+h1{
+background-color:#DEB887;
+border:2px solid black;
+width:100%;
+text-align: center;
+}
+
+
+body
+{
+margin:0;
+padding:0;
+width:100%;
+font-size: 12pt;
+
+}
+
+#output{
+color:#800000;
+float:right;
+margin-top:30px;
+margin-right:10px;
+position:relative;
+width:800px;
+font-size: 14pt;
+}
+
+
+
+
+

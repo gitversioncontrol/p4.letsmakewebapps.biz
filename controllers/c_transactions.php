@@ -14,6 +14,13 @@ class transactions_controller extends base_controller{
 			$this->template->content = View::instance('v_transactions_index');
 			$this->template->title   = "Transactions";
 			
+			# JavaScript/CSS files
+		$client_files_body = Array(
+			'/css/bootstrap.css',
+			'/js/jquery-1.10.2.min.js',
+			'js/bootstrap.js');
+		$this->template->client_files_body = Utils::load_client_files($client_files_body);
+			
 		# Using this query
 	/*	$q='select uu.user_id_followed ,p.content,u.first_name ,u.last_name,p.created,p.modified
 			from users u,posts p,users_users uu

@@ -20,8 +20,10 @@ class quotes_controller extends base_controller {
 
     # JavaScript files
         $client_files_body = Array(
+			'/css/bootstrap.css',
 			'/js/jquery-1.10.2.min.js',
-            '/js/jquery.form.js', 
+            '/js/jquery.form.js',
+			'js/bootstrap.js',
             '/js/quotes_index.js');
         $this->template->client_files_body = Utils::load_client_files($client_files_body);
 

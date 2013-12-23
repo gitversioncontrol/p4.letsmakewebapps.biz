@@ -17,6 +17,14 @@ class users_controller extends base_controller {
 		$this->template->content=View::instance('v_users_signup');
 		$this->template->title="Sign up";
 		
+		# JavaScript/CSS files
+		$client_files_body = Array(
+			'/css/bootstrap.css',
+			'/js/jquery-1.10.2.min.js',
+			'/js/bootstrap.js',
+			'/js/users_signup.js');
+		$this->template->client_files_body = Utils::load_client_files($client_files_body);
+		
 		#Error Condition
 		$this->template->content->error=$error;
 									
@@ -28,7 +36,7 @@ class users_controller extends base_controller {
 		# Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
 		$_POST = DB::instance(DB_NAME)->sanitize($_POST);
 		
-		if (! (empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['password'])) ){//When none of the input field by user is empty:
+		if (! ( empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['balance']) ) ) {//When none of the input field by user is empty:
 				
 			//Time stamp for created and Modified columns
 			$_POST['created']  = Time::now();
@@ -45,22 +53,29 @@ class users_controller extends base_controller {
 			
 			$userid=DB::instance(DB_NAME)->select_field($q);
 			
-				if(! $userid){ //There is no another userid with same email registered
-					#Insert users data in users table
-					DB::instance(DB_NAME)->insert('users',$_POST);
-					print_r($_POST);
-					#Insert a fix amount of $10000 for simulation by users.
-					//$amount=array_push($_POST,'balance':10000);
-					//print_r($amount);
-					//DB::instance(DB_NAME)->insert('users',$_POST);
-					$msg="Signup is successful and an amount of $10000 is assigned to your account for simulation.Please proceed with log-in.";
-					Router::redirect("/users/login/$msg");
-				}
-				else{//There is already another user registered with same email id
-					 //Send them back to the Sign-up page
-					$error_received="User-id ".$_POST['email']." is already registered.Please log-in";					
-					Router::redirect("/users/signup/$error_received/");
-				}
+			if ( (! is_numeric($_POST['balance']) ) || ($_POST['balance'] <= 100 ) ){
+			$error_received="Initial balance should be a number greater than 100";
+			Router::redirect("/users/signup/$error_received/");
+			}
+			
+			
+					if(! $userid){ //There is no another userid with same email registered
+						#Insert users data in users table
+						DB::instance(DB_NAME)->insert('users',$_POST);
+						//print_r($_POST);
+						#Insert a fix amount of $10000 for simulation by users.
+						//$amount=array_push($_POST,'balance':10000);
+						//print_r($amount);
+						//DB::instance(DB_NAME)->insert('users',$_POST);
+						$msg="Signup is successful and an amount of $10000 is assigned to your account for simulation.Please proceed with log-in.";
+						Router::redirect("/users/login/$msg");
+					}
+					else{//There is already another user registered with same email id
+						 //Send them back to the Sign-up page
+						$error_received="User-id ".$_POST['email']." is already registered.Please log-in";					
+						Router::redirect("/users/signup/$error_received/");
+					}
+					
 		}
 		else{//When any input field is empty
 			$error_received="A field can not be empty during sign-up";
@@ -74,6 +89,13 @@ class users_controller extends base_controller {
 		# Settle Login View
 		$this->template->content=View::instance('v_users_login');
 		$this->template->title="Log in";
+		
+		# JavaScript/CSS files
+		$client_files_body = Array(
+			'/css/bootstrap.css',
+			'/js/jquery-1.10.2.min.js',
+			'/js/bootstrap.js');
+		$this->template->client_files_body = Utils::load_client_files($client_files_body);
 		
 		#Error Condition
 		$this->template->content->error=$error_passed;
