@@ -8,33 +8,20 @@
 		<!-- Menu options for users who are not logged in -->
         <?php else: ?>
 		<div class="hero-unit" >
-			<p>This is a simulator site for Stock market Trading.It helps you create a stock brokerage account,get live quotes,place buy/sell orders in your account,check transaction history and performance of your portfolio.</p>
-		
-			</div>
-			
-					 
-			
-			
-					
-					<div class="row">
-				 <div class="span6">
+		<p>This is a simulator site for Stock market Trading.It helps you create a stock brokerage account,get live quotes,place buy/sell orders in your account,check transaction history and performance of your portfolio.</p>
+		</div>
+
+			<div class="row">
+				<div class="span6">
+				<?=$login_module?>
+				</div>
 				
-					<?=$login_module?>
-					 
-				 </div>
-				 <div class="span6">
-				 <h3>Are you a new client? Please sign up :	</h3>
+				<div class="span6">
+				<h3>Are you a new client? Please sign up :	</h3>
 					 <?=$signup_module?>
-				 </div>
-			 </div>
-			
-			
-		
-			
-		<!--	<div id="bottomLeft">
-			<a href='http://validator.w3.org/check?uri=http%3A%2F%2Fp2.letsmakewebapps.biz%2F'>Html Validation</a>
-			</div> -->
-		
+				</div>
+			</div>
+
 		<?php endif; ?>
 		
 	

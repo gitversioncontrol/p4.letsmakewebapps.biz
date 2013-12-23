@@ -9,7 +9,7 @@ class accounts_controller extends base_controller{
 		}
 	}
 
-	public function index(){
+	public function index(){ //Home page Account data
 	 # Setup view
 			$this->template->content = View::instance('v_accounts_index');
 			$this->template->title   = "Account";
@@ -47,7 +47,7 @@ class accounts_controller extends base_controller{
 		echo $this->template;
 	}
 	
-	public function performance(){
+	public function performance(){//Pull data for Gain/Loss Center
 		# Setup view
 			$this->template->content = View::instance('v_accounts_performance');
 			$this->template->title   = "Gain/Loss Center";

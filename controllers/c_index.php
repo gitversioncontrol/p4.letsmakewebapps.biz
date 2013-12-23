@@ -28,15 +28,7 @@ class index_controller extends base_controller {
 			'js/bootstrap.js');
 		$this->template->client_files_body = Utils::load_client_files($client_files_body);
 			 
-	
-		# CSS/JS includes
-			/*
-			$client_files_head = Array("");
-	    	$this->template->client_files_head = Utils::load_client_files($client_files);
-	    	
-	    	$client_files_body = Array("");
-	    	$this->template->client_files_body = Utils::load_client_files($client_files_body);   
-	    	*/
+
 	    # To have Login form on front page		 
 		$this->template->content->login_module= View::instance('v_users_login'); 
 		
